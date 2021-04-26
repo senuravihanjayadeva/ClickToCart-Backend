@@ -33,14 +33,24 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('MODERATOR')")
+//    @PreAuthorize("hasRole('MODERATOR')")
     public String deleteItemById(@PathVariable int id){
         return itemService.deleteItemByID(id);
     }
 
     @PutMapping
-    @PreAuthorize("hasRole('MODERATOR')")
+//    @PreAuthorize("hasRole('MODERATOR')")
     public Item updateItem(@RequestBody Item item){
         return itemService.updateItemById(item);
+    }
+
+    @PutMapping("customer/{qty}/{id}")
+    public String updateStockCustomer(@PathVariable int qty,@PathVariable int id){
+        return itemService.updateStockCustomer(qty,id);
+    }
+
+    @PutMapping("sellar/{qty}/{name}/{sellarName}")
+    public String updateStockSellar(@PathVariable int qty,@PathVariable String name,@PathVariable String sellarName){
+        return itemService.updateStockSellar(qty,name,sellarName);
     }
 }

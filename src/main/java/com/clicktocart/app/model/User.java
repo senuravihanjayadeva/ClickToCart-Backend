@@ -97,4 +97,12 @@ public class User {
     public List<Item> getItems() {
         return items;
     }
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, mappedBy = "user")
+    private List<CartRecords> cartRecords;
+
+    @JsonManagedReference
+    public List<CartRecords> getCartRecords() {
+        return cartRecords;
+    }
 }

@@ -6,31 +6,34 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "items_tbl")
-public class Item {
+@Table(name = "cart_item")
+public class CartRecords {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String catagory;
-    private Double price;
-    private int stock;
+
     @ManyToOne
-    @JoinColumn(name="sellarid")
+    @JoinColumn(name = "user_id")
     private User user;
-    private String sellarName;
+
+    private int quantity;
+
+    private double price;
+
+    private String status;
+
+    private int itemId;
 
     @JsonBackReference
     public User getUser() {
         return user;
     }
-
-
 
 }
