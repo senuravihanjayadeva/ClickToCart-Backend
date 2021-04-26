@@ -33,11 +33,13 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String deleteItemById(@PathVariable int id){
         return itemService.deleteItemByID(id);
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('MODERATOR')")
     public Item updateItem(@RequestBody Item item){
         return itemService.updateItemById(item);
     }
