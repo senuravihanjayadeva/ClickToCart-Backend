@@ -22,11 +22,15 @@ public class Item {
     private Double price;
     private int stock;
     @ManyToOne
-    @JoinColumn(name="userid")
+    @JoinColumn(name="sellarid")
     private User user;
+    private String sellarName;
 
     @JsonBackReference
     public User getUser() {
         return user;
     }
+
+
+
 }

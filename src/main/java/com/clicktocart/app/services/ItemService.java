@@ -37,9 +37,18 @@ public class ItemService {
         existingItem.setCatagory(item.getCatagory());
         existingItem.setPrice(item.getPrice());
         existingItem.setStock(item.getStock());
-        existingItem.setUser(item.getUser());
 
         return itemRepository.save(existingItem);
+    }
+
+    public String updateStockCustomer(int quantity ,int id){
+        itemRepository.updateStockCustomer(quantity,id);
+        return "Stock updated sucessfully";
+    }
+
+    public String updateStockSellar(int quantity ,String name,String sellarName){
+        itemRepository.updateStockSellar(quantity,name,sellarName);
+        return "Stock updated sucessfully";
     }
 
 }
