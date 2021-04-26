@@ -1,5 +1,6 @@
 package com.clicktocart.app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,4 +21,12 @@ public class Item {
     private String catagory;
     private Double price;
     private int stock;
+    @ManyToOne
+    @JoinColumn(name="userid")
+    private User user;
+
+    @JsonBackReference
+    public User getUser() {
+        return user;
+    }
 }
