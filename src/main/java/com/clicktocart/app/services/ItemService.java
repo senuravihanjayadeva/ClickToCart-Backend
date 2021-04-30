@@ -34,9 +34,13 @@ public class ItemService {
     public Item updateItemById(Item item){
         Item existingItem = itemRepository.findById(item.getId()).orElse(null);
         existingItem.setName(item.getName());
-        existingItem.setCatagory(item.getCatagory());
+        existingItem.setBrand(item.getBrand());
+        existingItem.setRam(item.getRam());
+        existingItem.setStorage(item.getStorage());
         existingItem.setPrice(item.getPrice());
         existingItem.setStock(item.getStock());
+        existingItem.setImgLink(item.getImgLink());
+        existingItem.setDescription(item.getDescription());
 
         return itemRepository.save(existingItem);
     }
