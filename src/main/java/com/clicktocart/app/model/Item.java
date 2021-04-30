@@ -18,8 +18,12 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String catagory;
+    private String brand;
+    private int ram;
+    private int storage;
     private Double price;
+    private String description;
+    private String imgLink;
     private int stock;
     @ManyToOne
     @JoinColumn(name="sellarid")
