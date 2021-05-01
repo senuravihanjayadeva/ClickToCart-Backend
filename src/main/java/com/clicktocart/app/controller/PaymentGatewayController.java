@@ -25,9 +25,11 @@ public class PaymentGatewayController {
     public Charge chargeCard(HttpServletRequest request) throws Exception {
         String token = request.getHeader("token");
         Double amount = Double.parseDouble(request.getHeader("amount"));
+        Integer userID = Integer.parseInt(request.getHeader("userid"));
         System.out.println(token);
         System.out.println(amount);
-        return this.stripeClient.chargeNewCard(token, amount);
+        System.out.println(userID);
+        return this.stripeClient.chargeNewCard(token, amount, userID);
 
     }
 }
