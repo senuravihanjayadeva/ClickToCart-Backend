@@ -20,6 +20,9 @@ public interface CartRepository extends JpaRepository<CartRecords,Integer> {
     @Query(value = "SELECT * from cart_item c WHERE c.user_id = ?1 AND c.item_id = ?2",nativeQuery = true)
     public List<CartRecords> getCartDetailsByCustIdAndId(int custId, int id);
 
+    @Query(value = "SELECT * from cart_item c WHERE c.user_id = ?1 AND c.status = '"+"S"+"'",nativeQuery = true)
+    List<CartRecords> getPayedCartDetailsByCustId(int custId);
+
     @Query("UPDATE CartRecords SET status = '"+ "S" +"' WHERE user_id = ?1")
     @Modifying
     void updateCartPaymentSucess(int custId,Date curentTime);
