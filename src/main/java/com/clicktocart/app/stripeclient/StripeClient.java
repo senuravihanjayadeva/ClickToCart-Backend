@@ -1,5 +1,7 @@
 package com.clicktocart.app.stripeclient;
 
+import com.clicktocart.app.repository.CartRepository;
+import com.clicktocart.app.repository.ItemRepository;
 import com.stripe.Stripe;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
@@ -11,6 +13,9 @@ import java.util.Map;
 
 @Component
 public class StripeClient {
+
+    @Autowired
+    private CartRepository cartRepository;
 
     @Autowired
     StripeClient() {
@@ -28,12 +33,15 @@ public class StripeClient {
         return Customer.retrieve(id);
     }
 
-    public Charge chargeNewCard(String token, double amount) throws Exception {
+    public Charge chargeNewCard(String token, double amount,int userID) throws Exception {
         Map<String, Object> chargeParams = new HashMap<String, Object>();
         chargeParams.put("amount", (int)(amount * 100));
         chargeParams.put("currency", "USD");
         chargeParams.put("source", token);
         Charge charge = Charge.create(chargeParams);
+
+        cartRepository.updateCartPaymentSucess(userID);
+
         return charge;
     }
 
