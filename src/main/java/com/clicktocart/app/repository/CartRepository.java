@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -21,6 +22,6 @@ public interface CartRepository extends JpaRepository<CartRecords,Integer> {
 
     @Query("UPDATE CartRecords SET status = '"+ "S" +"' WHERE user_id = ?1")
     @Modifying
-    void updateCartPaymentSucess(int custId);
+    void updateCartPaymentSucess(int custId,Date curentTime);
 
 }
