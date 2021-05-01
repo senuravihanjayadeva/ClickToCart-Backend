@@ -2,8 +2,14 @@ package com.clicktocart.app.payload.response;
 
 public class CartResponse {
 
+    private int id;//newly added
     private String itemName;
     private int qty;
+
+    public int getId() {  return id; }
+
+    public void setId(int id) { this.id = id; }
+
     private double totalPrice;
 
     public String getItemName() {
