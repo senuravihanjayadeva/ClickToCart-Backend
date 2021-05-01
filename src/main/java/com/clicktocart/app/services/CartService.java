@@ -44,6 +44,7 @@ public class CartService {
             CartResponse response = new CartResponse();
             response.setQty(cartRes.getQuantity());
             response.setTotalPrice(cartRes.getPrice());
+            response.setId(cartRes.getId());
 
             Item existingItem = itemRepository.findById(cartRes.getItemId()).orElse(null);
             response.setItemName(existingItem.getName());
