@@ -8,6 +8,8 @@ import com.stripe.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +21,7 @@ public class StripeClient {
 
     @Autowired
     StripeClient() {
-        Stripe.apiKey = "*******";
+        Stripe.apiKey = "sk_test_51ImBWIFPpVy9RtnRW477vfYcyEXVyeoVhmTCrf8EYoz3uEEGRtR2l4UKiZj59fUd8gJQzqh41Z4rDHrqKsnVLjFR00eOkwcqpV";
     }
 
     public Customer createCustomer(String token, String email) throws Exception {
@@ -40,7 +42,11 @@ public class StripeClient {
         chargeParams.put("source", token);
         Charge charge = Charge.create(chargeParams);
 
-        cartRepository.updateCartPaymentSucess(userID);
+        Date date= new Date();
+        long time = date.getTime();
+        Timestamp curentTime = new Timestamp(time);
+
+        cartRepository.updateCartPaymentSucess(userID,curentTime);
 
         return charge;
     }
