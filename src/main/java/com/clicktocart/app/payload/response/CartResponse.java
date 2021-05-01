@@ -2,7 +2,7 @@ package com.clicktocart.app.payload.response;
 
 public class CartResponse {
 
-    private int id;
+    private int id;//newly added
     private String itemName;
     private int qty;
 
