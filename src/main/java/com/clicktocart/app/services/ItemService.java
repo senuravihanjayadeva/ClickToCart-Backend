@@ -45,10 +45,12 @@ public class ItemService {
         return itemRepository.save(existingItem);
     }
 
+    //Reduce stock when customer paid
     public void updateStockCustomer(int quantity ,int id){
         itemRepository.updateStockCustomer(quantity,id);
     }
 
+    //increase stock when seller added stock
     public String updateStockSellar(int quantity ,int id){
         itemRepository.updateStockSellar(quantity,id);
         return "Stock updated sucessfully";
