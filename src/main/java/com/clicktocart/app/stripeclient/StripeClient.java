@@ -1,7 +1,9 @@
 package com.clicktocart.app.stripeclient;
 
+import com.clicktocart.app.payload.response.CartResponse;
 import com.clicktocart.app.repository.CartRepository;
 import com.clicktocart.app.repository.ItemRepository;
+import com.clicktocart.app.services.ItemService;
 import com.stripe.Stripe;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -18,6 +21,9 @@ public class StripeClient {
 
     @Autowired
     private CartRepository cartRepository;
+
+    @Autowired
+    private ItemService itemService;
 
     @Autowired
     StripeClient() {
@@ -35,7 +41,7 @@ public class StripeClient {
         return Customer.retrieve(id);
     }
 
-    public Charge chargeNewCard(String token, double amount,int userID) throws Exception {
+    public Charge chargeNewCard(String token, double amount, int userID, List<CartResponse> cartResponseList) throws Exception {
         Map<String, Object> chargeParams = new HashMap<String, Object>();
         chargeParams.put("amount", (int)(amount * 100));
         chargeParams.put("currency", "USD");
@@ -47,6 +53,11 @@ public class StripeClient {
         Timestamp curentTime = new Timestamp(time);
 
         cartRepository.updateCartPaymentSucess(userID,curentTime);
+
+        //Reduce stock when customer paid
+        for(CartResponse cartResponse:cartResponseList){
+            itemService.updateStockCustomer(cartResponse.getQty(),cartResponse.getItemId());
+        }
 
         return charge;
     }
