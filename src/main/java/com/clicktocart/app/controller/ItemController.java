@@ -32,6 +32,11 @@ public class ItemController {
         return itemService.getItemById(id);
     }
 
+    @GetMapping("/useritems/{id}")
+    public List<Item> getItemsBySellerId(@PathVariable int id){
+        return itemService.getAllItemsBySellarID(id);
+    }
+
     @DeleteMapping("/{id}")
 //    @PreAuthorize("hasRole('MODERATOR')")
     public String deleteItemById(@PathVariable int id){
@@ -49,8 +54,8 @@ public class ItemController {
         return itemService.updateStockCustomer(qty,id);
     }
 
-    @PutMapping("sellar/{qty}/{name}/{sellarName}")
-    public String updateStockSellar(@PathVariable int qty,@PathVariable String name,@PathVariable String sellarName){
-        return itemService.updateStockSellar(qty,name,sellarName);
+    @PutMapping("sellar/{qty}/{id}")
+    public String updateStockSellar(@PathVariable int qty,@PathVariable int id){
+        return itemService.updateStockSellar(qty,id);
     }
 }
