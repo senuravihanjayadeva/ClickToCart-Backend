@@ -1,6 +1,7 @@
 package com.clicktocart.app.controller;
 
 import com.clicktocart.app.model.Item;
+import com.clicktocart.app.payload.response.ItemBrandDetail;
 import com.clicktocart.app.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -50,12 +51,17 @@ public class ItemController {
     }
 
     @PutMapping("customer/{qty}/{id}")
-    public String updateStockCustomer(@PathVariable int qty,@PathVariable int id){
-        return itemService.updateStockCustomer(qty,id);
+    public void updateStockCustomer(@PathVariable int qty,@PathVariable int id){
+        itemService.updateStockCustomer(qty,id);
     }
 
     @PutMapping("sellar/{qty}/{id}")
     public String updateStockSellar(@PathVariable int qty,@PathVariable int id){
         return itemService.updateStockSellar(qty,id);
+    }
+
+    @GetMapping("/itembrands/{sellerid}")
+    public List<ItemBrandDetail> getAllItemsBrandsBySellarID(@PathVariable int sellerid){
+        return itemService.getAllItemsBrandsBySellarID(sellerid);
     }
 }
