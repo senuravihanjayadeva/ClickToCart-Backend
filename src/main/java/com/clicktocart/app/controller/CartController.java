@@ -48,4 +48,10 @@ public class CartController {
     public CartRecords updateItemInCart(@RequestBody CartRecords cart){
         return cartService.updateItemById(cart);
     }
+
+    @GetMapping("/{custId}/payedCarts")
+    @PreAuthorize("hasRole('USER')")
+    public List<CartResponse> getAllPayedItemsInCart(@PathVariable int custId) {
+        return cartService.getAllPayedItemsInCart(custId);
+    }
 }

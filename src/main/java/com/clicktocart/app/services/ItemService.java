@@ -49,9 +49,14 @@ public class ItemService {
         itemRepository.updateStockCustomer(quantity,id);
     }
 
-    public String updateStockSellar(int quantity ,String name,String sellarName){
-        itemRepository.updateStockSellar(quantity,name,sellarName);
+    public String updateStockSellar(int quantity ,int id){
+        itemRepository.updateStockSellar(quantity,id);
         return "Stock updated sucessfully";
     }
+
+    public List<Item> getAllItemsBySellarID(int id){
+        return itemRepository.getAllItemsBySellarID(id);
+    }
+
 
 }
