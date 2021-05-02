@@ -1,5 +1,7 @@
 package com.clicktocart.app.payload.response;
 
+import java.util.Date;
+
 public class CartResponse {
 
     private int id;//newly added
@@ -7,6 +9,15 @@ public class CartResponse {
     private String itemName;
     private int qty;
     private double totalPrice;
+    private Date modifiedDate;
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
 
     public int getId() {  return id; }
 
