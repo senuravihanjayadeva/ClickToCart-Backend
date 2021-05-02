@@ -45,9 +45,8 @@ public class ItemService {
         return itemRepository.save(existingItem);
     }
 
-    public String updateStockCustomer(int quantity ,int id){
+    public void updateStockCustomer(int quantity ,int id){
         itemRepository.updateStockCustomer(quantity,id);
-        return "Stock updated sucessfully";
     }
 
     public String updateStockSellar(int quantity ,String name,String sellarName){
