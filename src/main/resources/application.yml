@@ -1,0 +1,10 @@
+twilio:
+  account_sid: ${TWILIO_SID}
+  auth_token: ${TWILIO_AUTH_TOKEN}
+  trial_number: ${TWILIO_NUMBER}
+
+spring:
+  datasource:
+    password: ${SQL_DATABASE_PASSWORD}
+    url: ${SQL_DATABASE_URL}
+    username: ${SQL_DATABASE_USERNAME}

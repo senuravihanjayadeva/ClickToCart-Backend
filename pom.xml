@@ -58,6 +58,11 @@
 			<artifactId>stripe-java</artifactId>
 			<version>5.21.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>7.34.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
