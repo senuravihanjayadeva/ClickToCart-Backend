@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 
 @CrossOrigin("*")
-@RestController
 @RequestMapping("/api/cart")
+@RestController
 public class CartController {
 
     @Autowired
