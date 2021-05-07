@@ -4,11 +4,13 @@ import com.clicktocart.app.payload.response.CartResponse;
 import com.clicktocart.app.repository.CartRepository;
 import com.clicktocart.app.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class MobilePaymentService {
 
     @Autowired
