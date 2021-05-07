@@ -1,5 +1,6 @@
 package com.clicktocart.app.controller;
 
+import com.clicktocart.app.mobilepayment.MobilePaymentService;
 import com.clicktocart.app.model.CartRecords;
 import com.clicktocart.app.payload.response.CartResponse;
 import com.clicktocart.app.stripeclient.StripeClient;
@@ -17,6 +18,9 @@ public class PaymentGatewayController {
     private StripeClient stripeClient;
 
     @Autowired
+    private MobilePaymentService mobilePaymentService;
+
+    @Autowired
     PaymentGatewayController(StripeClient stripeClient) {
         this.stripeClient = stripeClient;
     }
@@ -26,5 +30,10 @@ public class PaymentGatewayController {
 
         return this.stripeClient.chargeNewCard(token, amount, userid, cartResponseList);
 
+    }
+
+    @PostMapping("/chargemobilepayment/{userid}")
+    public String chargeMobilePayment( @PathVariable Integer userid, @RequestBody List<CartResponse> cartResponseList) throws Exception {
+        return mobilePaymentService.chargeMobilePayment(userid, cartResponseList);
     }
 }
