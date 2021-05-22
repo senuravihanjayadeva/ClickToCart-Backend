@@ -27,4 +27,8 @@ public interface CartRepository extends JpaRepository<CartRecords,Integer> {
     @Modifying
     void updateCartPaymentSucess(int custId,Date curentTime);
 
+    @Modifying
+    @Query("delete from CartRecords c where c.itemId = ?1")
+    void deleteByItemFromCart(int itemID);
+
 }

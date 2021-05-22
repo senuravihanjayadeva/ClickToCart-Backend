@@ -3,6 +3,7 @@ package com.clicktocart.app.services;
 import com.clicktocart.app.model.Item;
 import com.clicktocart.app.model.User;
 import com.clicktocart.app.payload.response.ItemBrandDetail;
+import com.clicktocart.app.repository.CartRepository;
 import com.clicktocart.app.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
+    @Autowired
+    private CartRepository cartRepository;
+
     public Item addItem(Item item){
         return itemRepository.save(item);
     }
@@ -32,6 +36,7 @@ public class ItemService {
 
     public String deleteItemByID(int id){
         itemRepository.deleteById(id);
+        cartRepository.deleteByItemFromCart(id);
         return "Record deleted";
     }
     public Item updateItemById(Item item){
